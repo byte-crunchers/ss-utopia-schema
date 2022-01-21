@@ -1,0 +1,447 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+    <changeSet author="Henry (generated)" id="1642802087653-1">
+        <createTable tableName="account_types">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="savings_interest" type="DECIMAL(5, 5) UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="annual_fee" type="DECIMAL(6, 2) UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="foodie_pts" type="DECIMAL(4, 4) UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cashback" type="DECIMAL(4, 4) UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="late_fee" type="DECIMAL(5, 2) UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-2">
+        <createTable tableName="accounts">
+            <column autoIncrement="true" name="id" type="INT UNSIGNED">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="users_id" type="INT UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="account_type" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="balance" type="DECIMAL(10, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payment_due" type="DECIMAL(10, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="due_date" type="date"/>
+            <column name="credit_limit" type="INT"/>
+            <column name="debt_interest" type="DECIMAL(5, 5) UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="active" type="TINYINT(3)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="approved" type="TINYINT(3)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="confirmed" type="TINYINT(3)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-3">
+        <createTable tableName="appointments">
+            <column name="users_id_ap" type="INT UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="branches_id" type="INT UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_time" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_time" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-4">
+        <createTable tableName="branches">
+            <column autoIncrement="true" name="id" type="INT UNSIGNED">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="street_address" type="VARCHAR(95)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="city" type="VARCHAR(35)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="state" type="CHAR(2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="zip" type="VARCHAR(5)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-5">
+        <createTable tableName="card_transactions">
+            <column autoIncrement="true" name="id" type="INT UNSIGNED">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="card_num" type="DECIMAL(16) UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="merchant_account_id" type="INT UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="memo" type="VARCHAR(55)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="transfer_value" type="DECIMAL(10, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="pin" type="SMALLINT UNSIGNED"/>
+            <column name="cvc1" type="SMALLINT UNSIGNED"/>
+            <column name="cvc2" type="SMALLINT UNSIGNED"/>
+            <column name="location" type="CHAR(2)"/>
+            <column name="time_stamp" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="TINYINT(3)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-6">
+        <createTable tableName="cards">
+            <column name="accounts_id" type="INT UNSIGNED">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="card_num" type="DECIMAL(16) UNSIGNED">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="pin" type="SMALLINT UNSIGNED"/>
+            <column name="cvc1" type="SMALLINT UNSIGNED"/>
+            <column name="cvc2" type="SMALLINT UNSIGNED"/>
+            <column name="exp_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-7">
+        <createTable tableName="confirmation">
+            <column autoIncrement="true" name="id" type="INT UNSIGNED">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="confirmed_at" type="datetime"/>
+            <column name="created_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="expires_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="token" type="BINARY(16)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="user" type="INT UNSIGNED"/>
+            <column name="loan" type="INT UNSIGNED"/>
+            <column name="account" type="INT UNSIGNED"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-8">
+        <createTable tableName="loan_payments">
+            <column autoIncrement="true" name="id" type="INT UNSIGNED">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="loan_id" type="INT UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="account_id" type="INT UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount" type="DECIMAL(10, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="time_stamp" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="TINYINT(3)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-9">
+        <createTable tableName="loan_types">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="upper_range" type="DECIMAL(8, 4) UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lower_range" type="DECIMAL(8, 4) UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="late_fee" type="DECIMAL(6, 2) UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="term_min" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="term_max" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_secured" type="TINYINT(3)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-10">
+        <createTable tableName="loans">
+            <column autoIncrement="true" name="id" type="INT UNSIGNED">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="users_id" type="INT UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="balance" type="DECIMAL(10, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="interest_rate" type="DECIMAL(5, 5)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="due_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payment_due" type="DECIMAL(8, 2) UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="loan_type" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="monthly_payment" type="DECIMAL(7, 2) UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="active" type="TINYINT(3)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="approved" type="TINYINT(3)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="confirmed" type="TINYINT(3)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-11">
+        <createTable tableName="stocks">
+            <column autoIncrement="true" name="id" type="INT UNSIGNED">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="ticker" type="VARCHAR(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(256)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="DECIMAL(13, 6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="market_cap" type="DECIMAL(15, 2)"/>
+            <column name="volume" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="high" type="DECIMAL(13, 6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="low" type="DECIMAL(13, 6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="timestamp" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="TINYINT(3)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-12">
+        <createTable tableName="transactions">
+            <column autoIncrement="true" name="id" type="INT UNSIGNED">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="origin_account" type="INT UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="destination_account" type="INT UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="memo" type="VARCHAR(55)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="transfer_value" type="DECIMAL(10, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="time_stamp" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="TINYINT(3)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-13">
+        <createTable tableName="users">
+            <column autoIncrement="true" name="id" type="INT UNSIGNED">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="username" type="VARCHAR(16)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="email" type="VARCHAR(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password" type="CHAR(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_admin" type="TINYINT(3)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ssn" type="VARCHAR(200)"/>
+            <column name="active" type="TINYINT(3)"/>
+            <column name="confirmed" type="TINYINT(3)"/>
+            <column name="phone" type="DECIMAL(10)"/>
+            <column name="dob" type="date"/>
+            <column name="street_address" type="VARCHAR(95)"/>
+            <column name="city" type="VARCHAR(35)"/>
+            <column name="state" type="CHAR(2)"/>
+            <column name="zip" type="VARCHAR(5)"/>
+            <column name="approved" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="secret_name" type="VARCHAR(31)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-14">
+        <addUniqueConstraint columnNames="street_address, city, state, zip" constraintName="location_UNIQUE" tableName="branches"/>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-15">
+        <createIndex indexName="account_confirmation_idx" tableName="confirmation">
+            <column name="account"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-16">
+        <createIndex indexName="account_type_idx" tableName="accounts">
+            <column name="account_type"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-17">
+        <createIndex indexName="accounts_users_id_idx" tableName="accounts">
+            <column name="users_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-18">
+        <createIndex indexName="appointments_users_id_idx" tableName="appointments">
+            <column name="users_id_ap"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-19">
+        <createIndex indexName="banches_id_idx" tableName="appointments">
+            <column name="branches_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-20">
+        <createIndex indexName="card_num_idx" tableName="card_transactions">
+            <column name="card_num"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-21">
+        <createIndex indexName="destinationaccounts_id_idx" tableName="card_transactions">
+            <column name="merchant_account_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-22">
+        <createIndex indexName="destinationaccounts_id_idx" tableName="transactions">
+            <column name="destination_account"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-23">
+        <createIndex indexName="fk_loan_payments_accounts1_idx" tableName="loan_payments">
+            <column name="account_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-24">
+        <createIndex indexName="fk_loan_payments_loans1_idx" tableName="loan_payments">
+            <column name="loan_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-25">
+        <createIndex indexName="loan_confirmation_idx" tableName="confirmation">
+            <column name="loan"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-26">
+        <createIndex indexName="loan_type_idx" tableName="loans">
+            <column name="loan_type"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-27">
+        <createIndex indexName="origin_accounts_id_idx" tableName="transactions">
+            <column name="origin_account"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-28">
+        <createIndex indexName="user_confirmation_idx" tableName="confirmation">
+            <column name="user"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-29">
+        <createIndex indexName="user_id_idx" tableName="loans">
+            <column name="users_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-30">
+        <addForeignKeyConstraint baseColumnNames="account" baseTableName="confirmation" constraintName="account_confirmation" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="accounts" validate="true"/>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-31">
+        <addForeignKeyConstraint baseColumnNames="account_type" baseTableName="accounts" constraintName="account_type" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="account_types" validate="true"/>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-32">
+        <addForeignKeyConstraint baseColumnNames="branches_id" baseTableName="appointments" constraintName="banches_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="branches" validate="true"/>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-33">
+        <addForeignKeyConstraint baseColumnNames="accounts_id" baseTableName="cards" constraintName="card_account" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="accounts" validate="true"/>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-34">
+        <addForeignKeyConstraint baseColumnNames="loan" baseTableName="confirmation" constraintName="loan_confirmation" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="loans" validate="true"/>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-35">
+        <addForeignKeyConstraint baseColumnNames="loan_type" baseTableName="loans" constraintName="loan_type" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="loan_types" validate="true"/>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-36">
+        <addForeignKeyConstraint baseColumnNames="user" baseTableName="confirmation" constraintName="user_confirmation" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-37">
+        <addForeignKeyConstraint baseColumnNames="users_id" baseTableName="loans" constraintName="user_id_l" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-38">
+        <addForeignKeyConstraint baseColumnNames="users_id" baseTableName="accounts" constraintName="users_id_ac" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="Henry (generated)" id="1642802087653-39">
+        <addForeignKeyConstraint baseColumnNames="users_id_ap" baseTableName="appointments" constraintName="users_id_ap" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+</databaseChangeLog>
